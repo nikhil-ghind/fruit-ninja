@@ -37,3 +37,16 @@ li {
   text-align: center;
   padding: 1rem;
 }
+input {
+  text-align: center;
+  border: 0.15rem solid black;
+  width: 1.5rem;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+#textContent div {
+  margin: 0.5rem;
+}

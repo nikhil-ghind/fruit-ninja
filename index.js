@@ -3,12 +3,11 @@ const pauseButton = document.querySelector("#pauseButton");
 const score = document.querySelector("#score");
 const lives = document.querySelector("#lives");
 const gameOver = document.querySelector("#gameOver");
+const fruitsPerSecond = document.querySelector("#fruitsPerSecond");
 const playAgain = document.querySelector("#playAgain");
 const slicefruitAudio = document.querySelector("#slicefruitAudio");
 const scoreminusAudio = document.querySelector("#scoreminusAudio");
 const gameoverAudio = document.querySelector("#gameoverAudio");
-// Change this to increase difficulty
-const numberOfNewImagesPerSecond = 1;
 
 var intervalId;
 
@@ -27,7 +26,18 @@ function selectRandomImage() {
   let selectedFruit = choices[Math.floor(Math.random() * choices.length)];
   return `./images/${selectedFruit}.png`;
 }
-
+function pauseButtonClick() {
+  pauseButton.click();
+}
+fruitsPerSecond.addEventListener("change", () => {
+  if (
+    parseInt(fruitsPerSecond.value) > 9 ||
+    parseInt(fruitsPerSecond.value) < 0 ||
+    isNaN(parseInt(fruitsPerSecond.value))
+  ) {
+    fruitsPerSecond.value = 2;
+  }
+});
 startButton.addEventListener("click", () => {
   // Create image after every 1000ms.
   intervalId = setInterval(() => {
@@ -37,7 +47,7 @@ startButton.addEventListener("click", () => {
     document.body.appendChild(img);
     //To create falling animation for fruits.
     startMoving(img);
-  }, numberOfNewImagesPerSecond * 1000);
+  }, 1000 / parseInt(fruitsPerSecond.value));
   startButton.classList.add("hidden");
   pauseButton.classList.remove("hidden");
   // Event listener for pause in every created image.
@@ -48,9 +58,11 @@ startButton.addEventListener("click", () => {
       img.remove();
     });
     clearTimeout(intervalId);
-    window.removeEventListener("resize", () => pauseButton.click(), false);
+    window.removeEventListener("resize", pauseButtonClick, false);
+    fruitsPerSecond.removeEventListener("change", pauseButtonClick);
   });
-  window.addEventListener("resize", () => pauseButton.click(), false);
+  window.addEventListener("resize", pauseButtonClick, false);
+  fruitsPerSecond.addEventListener("change", pauseButtonClick);
 });
 
 function startMoving(img) {
@@ -77,13 +89,14 @@ function startMoving(img) {
     parseInt(getComputedStyle(img).height) +
     "px";
   let finalLeft = Math.floor(Math.random() * 61) + 20 + "vw";
-  let rate = Math.floor(Math.random() * 7) + 9 + "s";
+  let rate = Math.floor(Math.random() * 6) + 3 + "s";
   img.style.transition = "all " + rate + " linear";
   img.style.top = finalTop;
   img.style.left = finalLeft;
   img.addEventListener("transitionend", () => {
     if (lives.innerHTML === "1") {
-      window.removeEventListener("resize", () => pauseButton.click(), false);
+      window.removeEventListener("resize", pauseButtonClick, false);
+      fruitsPerSecond.removeEventListener("change", pauseButtonClick);
       gameoverAudio.play();
       lives.classList.add("hidden");
       pauseButton.classList.add("hidden");
