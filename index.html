@@ -7,17 +7,25 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <button id="startButton">Start &#9654;</button>
-    <button id="pauseButton">Pause &#9208;</button>
-    <div>
-      Lives Left:
-      <section id="lives">3</section>
-    </div>
-    <div>
-      Score:
-      <section id="score">0</section>
+    <div id="textContent">
+      <button id="startButton">Start &#9654;</button>
+      <button id="pauseButton" class="hidden">Pause &#9208;</button>
+      <div>
+        Lives Left:
+        <span id="lives">3</span>
+      </div>
+      <div>
+        Score:
+        <span id="score">0</span>
+      </div>
+      <div id="gameOver" class="hidden">
+        Game Over... <button id="playAgain">Play Again?</button>
+      </div>
     </div>
 
+    <audio src="./audio/slicefruit.mp3" id="slicefruitAudio"></audio>
+    <audio src="./audio/scoreminus.mp3" id="scoreminusAudio"></audio>
+    <audio src="./audio/gameover.mp3" id="gameoverAudio"></audio>
     <script src="index.js"></script>
   </body>
 </html>

@@ -1,8 +1,24 @@
 body {
   margin: 0;
   height: 100vh;
+  overflow: hidden;
+  font-family: "roboto mono";
+  font-weight: bold;
 }
 .fruit {
   width: 4rem;
   position: absolute;
+}
+.hidden {
+  display: none;
+}
+button {
+  background-color: white;
+  border: 0.15rem solid black;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+}
+#textContent {
+  padding: 1rem;
 }

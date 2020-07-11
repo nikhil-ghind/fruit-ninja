@@ -2,8 +2,16 @@ const startButton = document.querySelector("#startButton");
 const pauseButton = document.querySelector("#pauseButton");
 const score = document.querySelector("#score");
 const lives = document.querySelector("#lives");
+const gameOver = document.querySelector("#gameOver");
+const playAgain = document.querySelector("#playAgain");
+const slicefruitAudio = document.querySelector("#slicefruitAudio");
+const scoreminusAudio = document.querySelector("#scoreminusAudio");
+const gameoverAudio = document.querySelector("#gameoverAudio");
 // Change this to increase difficulty
 const numberOfNewImagesPerSecond = 1;
+
+var intervalId;
+
 function selectRandomImage() {
   const choices = [
     "apple",
@@ -22,7 +30,7 @@ function selectRandomImage() {
 
 startButton.addEventListener("click", () => {
   // Create image after every 1000ms.
-  let intervalid = setInterval(() => {
+  intervalId = setInterval(() => {
     let img = document.createElement("img");
     img.setAttribute("src", selectRandomImage());
     img.classList.add("fruit");
@@ -30,9 +38,16 @@ startButton.addEventListener("click", () => {
     //To create falling animation for fruits.
     startMoving(img);
   }, numberOfNewImagesPerSecond * 1000);
+  startButton.classList.add("hidden");
+  pauseButton.classList.remove("hidden");
   // Event listener for pause in every created image.
   pauseButton.addEventListener("click", () => {
-    clearTimeout(intervalid);
+    pauseButton.classList.add("hidden");
+    startButton.classList.remove("hidden");
+    document.querySelectorAll("img").forEach((img) => {
+      img.remove();
+    });
+    clearTimeout(intervalId);
   });
 });
 
@@ -51,6 +66,7 @@ function startMoving(img) {
   }
   let initialLeft = img.style.left;
   img.addEventListener("mouseleave", (e) => {
+    slicefruitAudio.play();
     score.innerHTML = parseInt(score.innerHTML) + 1;
     e.target.remove();
   });
@@ -64,10 +80,28 @@ function startMoving(img) {
   img.style.top = finalTop;
   img.style.left = finalLeft;
   img.addEventListener("transitionend", () => {
-    if (lives.innerHTML === "0") {
-      console.log("game over");
-    } else {
-      lives.innerHTML = parseInt(lives.innerHTML) - 1;
+    if (lives.innerHTML === "1") {
+      console.log("run");
+      gameoverAudio.play();
+      lives.classList.add("hidden");
+      pauseButton.classList.add("hidden");
+      document.querySelectorAll("img").forEach((img) => {
+        img.remove();
+      });
+      clearTimeout(intervalId);
+      gameOver.classList.remove("hidden");
+    } else if (parseInt(lives.innerHTML) > 0) {
+      scoreminusAudio.play();
+      lives.innerHTML = (parseInt(lives.innerHTML * 2) - 1) / 2;
+      img.remove();
     }
   });
 }
+playAgain.addEventListener("click", () => {
+  gameOver.classList.add("hidden");
+  score.innerHTML = "0";
+  lives.innerHTML = "3";
+  startButton.click();
+  lives.classList.remove("hidden");
+  pauseButton.classList.remove("hidden");
+});
