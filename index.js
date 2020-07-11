@@ -43,6 +43,8 @@ startButton.addEventListener("click", () => {
   intervalId = setInterval(() => {
     let img = document.createElement("img");
     img.setAttribute("src", selectRandomImage());
+    let randomWidth = Math.floor(Math.random() * 4) + 4 + "%";
+    img.setAttribute("width", randomWidth);
     img.classList.add("fruit");
     document.body.appendChild(img);
     //To create falling animation for fruits.

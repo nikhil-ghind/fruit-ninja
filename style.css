@@ -10,7 +10,6 @@ body {
   src: url("./fonts/RobotoMono-VariableFont_wght.ttf");
 }
 .fruit {
-  width: 4rem;
   position: absolute;
 }
 .hidden {
