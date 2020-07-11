@@ -2,8 +2,12 @@ body {
   margin: 0;
   height: 100vh;
   overflow: hidden;
-  font-family: "roboto mono";
+  font-family: "Roboto Mono";
   font-weight: bold;
+}
+@font-face {
+  font-family: "Roboto Mono";
+  src: url("./fonts/RobotoMono-VariableFont_wght.ttf");
 }
 .fruit {
   width: 4rem;
@@ -20,5 +24,16 @@ button {
   font-size: inherit;
 }
 #textContent {
+  padding: 1rem;
+}
+ul {
+  list-style: none;
+  padding: inherit;
+}
+li {
+  padding: 1rem;
+}
+#sourceCreditsPage {
+  text-align: center;
   padding: 1rem;
 }

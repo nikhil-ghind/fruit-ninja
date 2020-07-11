@@ -48,7 +48,9 @@ startButton.addEventListener("click", () => {
       img.remove();
     });
     clearTimeout(intervalId);
+    window.removeEventListener("resize", () => pauseButton.click(), false);
   });
+  window.addEventListener("resize", () => pauseButton.click(), false);
 });
 
 function startMoving(img) {
@@ -81,7 +83,7 @@ function startMoving(img) {
   img.style.left = finalLeft;
   img.addEventListener("transitionend", () => {
     if (lives.innerHTML === "1") {
-      console.log("run");
+      window.removeEventListener("resize", () => pauseButton.click(), false);
       gameoverAudio.play();
       lives.classList.add("hidden");
       pauseButton.classList.add("hidden");
