@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Fruit Ninja Game Clone</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="textContent">
+      <button id="startButton">Start &#9654;</button>
+      <button id="pauseButton" class="hidden">Pause &#9208;</button>
+      <div>
+        Lives Left:
+        <span id="lives">3</span>
+      </div>
+      <div>
+        Score:
+        <span id="score">0</span>
+      </div>
+      <div>
+        Fruits/Second:
+        <input value="2" id="fruitsPerSecond" />
+      </div>
+
+      <button id="sourceCredits" onclick="location.href='./sourceCredits.html'">
+        Source Credits
+      </button>
+      <div id="gameOver" class="hidden">
+        Game Over... <button id="playAgain">Play Again?</button>
+      </div>
+    </div>
+
+    <audio src="./audio/slicefruit.mp3" id="slicefruitAudio"></audio>
+    <audio src="./audio/scoreminus.mp3" id="scoreminusAudio"></audio>
+    <audio src="./audio/gameover.mp3" id="gameoverAudio"></audio>
+    <script src="index.js"></script>
+  </body>
+</html>

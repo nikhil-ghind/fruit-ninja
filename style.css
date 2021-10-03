@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Roboto Mono";
+  font-weight: bold;
+  cursor: url(./images/knife.png) 4 12, pointer ;
+}
+@font-face {
+  font-family: "Roboto Mono";
+  src: url("./fonts/RobotoMono-VariableFont_wght.ttf");
+}
+.fruit {
+  position: absolute;
+}
+.hidden {
+  display: none;
+}
+button {
+  background-color: white;
+  border: 0.15rem solid black;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+}
+#textContent {
+  padding: 1rem;
+}
+ul {
+  list-style: none;
+  padding: inherit;
+}
+li {
+  padding: 1rem;
+}
+#sourceCreditsPage {
+  text-align: center;
+  padding: 1rem;
+}
+input {
+  text-align: center;
+  border: 0.15rem solid black;
+  width: 1.5rem;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+#textContent div {
+  margin: 0.5rem;
+}
