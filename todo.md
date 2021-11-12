@@ -3,5 +3,3 @@
 > Need to add touch support if possible.
 
 > Fancy cursor?
-
-> Need more fruits coming from top.
